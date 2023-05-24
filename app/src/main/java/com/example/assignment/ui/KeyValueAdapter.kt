@@ -41,10 +41,11 @@ class KeyValueAdapter(
         return keyValueList.size
     }
 
-    fun addItem(weightRangesItems: ArrayList<KeyValueItem>, position: Int) {
+   /* fun addItem(weightRangesItems: ArrayList<KeyValueItem>, position: Int) {
         this.keyValueList = weightRangesItems
+        keyValueList.add(weightRangesItems[position])
         notifyItemRangeChanged(position, weightRangesItems.size)
-    }
+    }*/
     fun clearData() {
         keyValueList.clear()
     }
@@ -55,11 +56,11 @@ class KeyValueAdapter(
         notifyItemRangeChanged(position, keyValueList.size)
         notifyDataSetChanged()
     }
-   /* fun addItem(item: KeyValueItem) {
+    fun addItem(item: KeyValueItem) {
         val newItem = KeyValueItem(item.key, item.value) // Create a new instance of KeyValueItem
         keyValueList.add(newItem)
         notifyDataSetChanged()
-    }*/
+    }
 
     fun getData(): List<KeyValueItem> {
         return keyValueList.toList()

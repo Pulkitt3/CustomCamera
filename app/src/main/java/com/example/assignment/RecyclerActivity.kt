@@ -99,11 +99,8 @@ class RecyclerActivity : AppCompatActivity(), KeyValueAdapter.OnClickData {
     var weightRangesItems: ArrayList<KeyValueItem> = ArrayList<KeyValueItem>()
     override fun onButtonClick(pos: Int, weightRangeDataRequest: KeyValueItem) {
         val rangeItem = KeyValueItem("", "")
-        val rangeItem1 = KeyValueItem("", "")
-        weightRangesItems.add(pos,rangeItem1)
-        weightRangesItems.add(pos, rangeItem)
-        adapter.addItem(weightRangesItems, pos)
-        adapter.notifyDataSetChanged()
+       // weightRangesItems.add(pos, rangeItem)
+        adapter.addItem(rangeItem)
     }
 
 
