@@ -1,12 +1,11 @@
-package com.example.assignment
+package com.example.assignment.roomDB
 
 import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import com.example.assignment.KeyValuePairDao
 
-@Database(entities = [KeyValuePair::class,KeyValueEntity::class], version = 2)
+@Database(entities = [KeyValuePair::class, KeyValueEntity::class], version = 2)
 abstract class MyAppDatabase : RoomDatabase() {
     abstract fun keyValuePairDao(): KeyValuePairDao
     abstract fun keyValueDao(): KeyValueDao

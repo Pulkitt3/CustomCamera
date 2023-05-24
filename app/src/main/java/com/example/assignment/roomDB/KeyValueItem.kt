@@ -1,4 +1,4 @@
-package com.example.assignment
+package com.example.assignment.roomDB
 
 data class KeyValueItem(
     var key: String,

@@ -5,9 +5,8 @@ import android.os.Bundle
 import android.text.TextUtils
 import android.widget.Toast
 import androidx.lifecycle.lifecycleScope
-import com.example.assignment.KeyValuePair
-import com.example.assignment.MyAppDatabase
-import com.example.assignment.R
+import com.example.assignment.roomDB.KeyValuePair
+import com.example.assignment.roomDB.MyAppDatabase
 import com.example.assignment.databinding.ActivityDatabaseBinding
 import kotlinx.coroutines.launch
 

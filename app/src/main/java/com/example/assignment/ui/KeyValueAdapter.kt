@@ -1,6 +1,5 @@
 package com.example.assignment.ui
 
-import android.content.Context
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.LayoutInflater
@@ -9,7 +8,7 @@ import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
-import com.example.assignment.KeyValueItem
+import com.example.assignment.roomDB.KeyValueItem
 import com.example.assignment.R
 
 
@@ -41,11 +40,11 @@ class KeyValueAdapter(
         return keyValueList.size
     }
 
-   /* fun addItem(weightRangesItems: ArrayList<KeyValueItem>, position: Int) {
-        this.keyValueList = weightRangesItems
-        keyValueList.add(weightRangesItems[position])
-        notifyItemRangeChanged(position, weightRangesItems.size)
-    }*/
+    /* fun addItem(weightRangesItems: ArrayList<KeyValueItem>, position: Int) {
+         this.keyValueList = weightRangesItems
+         keyValueList.add(weightRangesItems[position])
+         notifyItemRangeChanged(position, weightRangesItems.size)
+     }*/
     fun clearData() {
         keyValueList.clear()
     }
@@ -53,9 +52,9 @@ class KeyValueAdapter(
     fun removeData(position: Int) {
         keyValueList.removeAt(position)
         notifyItemRemoved(position)
-        notifyItemRangeChanged(position, keyValueList.size)
-        notifyDataSetChanged()
+        notifyItemRangeChanged(position, keyValueList.size - 1)
     }
+
     fun addItem(item: KeyValueItem) {
         val newItem = KeyValueItem(item.key, item.value) // Create a new instance of KeyValueItem
         keyValueList.add(newItem)
@@ -83,9 +82,6 @@ class KeyValueAdapter(
                 holder.deleteIcon.visibility = View.VISIBLE
                 holder.ivAddIcon.visibility = View.VISIBLE
                 holder.editTextKey.requestFocus()
-                holder.editTextValue.requestFocus()
-                holder.editTextKey.isEnabled = true
-                holder.editTextValue.isEnabled = true
             } else {
                 holder.deleteIcon.visibility = View.GONE
                 holder.ivAddIcon.visibility = View.GONE

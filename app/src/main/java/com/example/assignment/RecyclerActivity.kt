@@ -7,6 +7,10 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.assignment.databinding.ActivityRecyclerBinding
+import com.example.assignment.roomDB.KeyValueDao
+import com.example.assignment.roomDB.KeyValueEntity
+import com.example.assignment.roomDB.KeyValueItem
+import com.example.assignment.roomDB.MyAppDatabase
 import com.example.assignment.ui.KeyValueAdapter
 import com.google.gson.Gson
 import kotlinx.coroutines.Dispatchers
@@ -20,6 +24,8 @@ class RecyclerActivity : AppCompatActivity(), KeyValueAdapter.OnClickData {
     private lateinit var binding: ActivityRecyclerBinding
     private lateinit var db: MyAppDatabase
     private lateinit var keyValueDao: KeyValueDao
+    var weightRangesItems: ArrayList<KeyValueItem> = ArrayList<KeyValueItem>()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_recycler)
@@ -27,8 +33,8 @@ class RecyclerActivity : AppCompatActivity(), KeyValueAdapter.OnClickData {
         db = MyAppDatabase.getDatabase(this)
         keyValueDao = db.keyValueDao()
         setContentView(binding.root)
-        weightRangesItems.add(KeyValueItem("",""));
-        adapter = KeyValueAdapter(weightRangesItems,this)
+        weightRangesItems.add(KeyValueItem("", ""));
+        adapter = KeyValueAdapter(weightRangesItems, this)
         binding.rv.adapter = adapter
         binding.rv.layoutManager = LinearLayoutManager(this)
         binding.btnSave.setOnClickListener {
@@ -96,16 +102,26 @@ class RecyclerActivity : AppCompatActivity(), KeyValueAdapter.OnClickData {
         }
     }
 
-    var weightRangesItems: ArrayList<KeyValueItem> = ArrayList<KeyValueItem>()
     override fun onButtonClick(pos: Int, weightRangeDataRequest: KeyValueItem) {
-        val rangeItem = KeyValueItem("", "")
-       // weightRangesItems.add(pos, rangeItem)
-        adapter.addItem(rangeItem)
+        addEditTextItem()
+    }
+
+    private fun addEditTextItem() {
+        val newItem = KeyValueItem("", "")
+        weightRangesItems.add(newItem)
+        adapter.notifyItemInserted(weightRangesItems.size - 1)
     }
 
 
-
     override fun onButtonDelete(weightRangeItem: KeyValueItem, pos: Int) {
-        adapter.removeData(pos)
+        weightRangesItems.removeAt(pos)
+        adapter.notifyItemRemoved(pos)
+        adapter.notifyItemRangeChanged(pos, weightRangesItems.size - 1)
+        if (pos == weightRangesItems.size) {
+            adapter.notifyItemChanged(pos - 1) // Notify the previous item
+        } else {
+            adapter.notifyItemChanged(pos) // Notify the current item
+        }
+
     }
 }
