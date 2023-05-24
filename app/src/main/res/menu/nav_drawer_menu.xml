@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:checkableBehavior="single">
+
+
+        <item
+            android:id="@+id/nav_home"
+            android:checked="false"
+            android:title="home"
+           />
+
+
+        <item
+            android:id="@+id/nav_notification"
+            android:checked="false"
+            android:title="notification"
+            android:textColor="@color/text_blue" />
+
+        <item
+            android:id="@+id/nav_settings"
+            android:checked="false"
+            android:title="settings"
+           />
+        <item
+            android:id="@+id/nav_earning"
+            android:checked="false"
+            android:title="earning" />
+
+
+        <item
+            android:id="@+id/nav_trip_history"
+            android:checked="false"
+            android:title="trip history" />
+
+        <item
+            android:id="@+id/nav_signout"
+            android:checked="false"
+            android:title="signout"
+          />
+
+
+    </group>
+</menu>
