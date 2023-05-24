@@ -107,6 +107,7 @@ class RecyclerActivity : AppCompatActivity(), KeyValueAdapter.OnClickData {
     }
 
 
+
     override fun onButtonDelete(weightRangeItem: KeyValueItem, pos: Int) {
         adapter.removeData(pos)
     }
